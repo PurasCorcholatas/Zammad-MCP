@@ -183,32 +183,32 @@ class ZammadClient:
         return dict(ticket)
 
     def create_ticket(
-    self,
-    title: str,
-    group: str,
-    customer: str,
-    article_body: str,
-    state: str = "new",
-    priority: str = "2 normal",
-    article_type: str = "note",
-    article_internal: bool = False,
-    **kwargs: Any,
-) -> dict[str, Any]:
-    """Create a new ticket."""
-    ticket_data = {
-        "title": title,
-        "group": group,
-        "customer": customer,
-        "state": state,
-        "priority": priority,
-        "article": {
-            "body": article_body,
-            "type": article_type,
-            "internal": article_internal,
-        },
-    }
+        self,
+        title: str,
+        group: str,
+        customer: str,
+        article_body: str,
+        state: str = "new",
+        priority: str = "2 normal",
+        article_type: str = "note",
+        article_internal: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """Create a new ticket."""
+        ticket_data = {
+            "title": title,
+            "group": group,
+            "customer": customer,
+            "state": state,
+            "priority": priority,
+            "article": {
+                "body": article_body,
+                "type": article_type,
+                "internal": article_internal,
+            },
+        }
 
-    return dict(self.api.ticket.create(ticket_data))
+        return dict(self.api.ticket.create(ticket_data))
 
     def add_article(
         self,
