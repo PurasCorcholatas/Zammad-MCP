@@ -260,12 +260,13 @@ class TicketCreate(StrictBaseModel):
     group: str = Field(description="Group name or ID", max_length=100)
     customer: str = Field(description="Customer email or ID", max_length=255)
     article_body: str = Field(description="Initial article/comment body", max_length=100000)
+    article_content_type: str = Field(default="text/plain", description="Article content type (text/plain or text/html)")
     state: str = Field(default="new", description="State name (new, open, pending reminder, etc.)", max_length=100)
     priority: str = Field(default="2 normal", description="Priority name (1 low, 2 normal, 3 high)", max_length=100)
     article_type: str = Field(default="note", description="Article type (note, email, phone)", max_length=50)
     article_internal: bool = Field(default=False, description="Whether the article is internal")
 
-    @field_validator("title", "article_body")
+    @field_validator("title")
     @classmethod
     def sanitize_html(cls, v: str) -> str:
         """Escape HTML to prevent XSS attacks."""
