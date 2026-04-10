@@ -192,8 +192,9 @@ class ZammadClient:
     priority: str = "2 normal",
     article_type: str = "note",
     article_internal: bool = False,
-    article_content_type: str = "text/plain",  
+    **kwargs: Any,
 ) -> dict[str, Any]:
+    """Create a new ticket."""
     ticket_data = {
         "title": title,
         "group": group,
@@ -204,9 +205,9 @@ class ZammadClient:
             "body": article_body,
             "type": article_type,
             "internal": article_internal,
-            "content_type": article_content_type,  # ← AGREGAR
         },
     }
+
     return dict(self.api.ticket.create(ticket_data))
 
     def add_article(
